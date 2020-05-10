@@ -1,4 +1,5 @@
 import FakeAppointmentsRepository from '@modules/appointments/repositories/fakes/fakeAppointmentsRepository';
+import AppError from '@shared/errors/AppError';
 import CreateAppointmentService from './CreateAppointmentService';
 
 describe('CreateAppointment', () => {
@@ -16,5 +17,23 @@ describe('CreateAppointment', () => {
     expect(appointment.provider_id).toBe('1233123123');
   });
 
-  it('should not be able to create two appointments on the same date/time', () => {});
+  it('should not be able to create two appointments on the same date/time', async () => {
+    const fakeAppointmentsRepository = new FakeAppointmentsRepository();
+    const createAppointment = new CreateAppointmentService(
+      fakeAppointmentsRepository
+    );
+    const appointmentDate = new Date();
+
+    await createAppointment.execute({
+      provider_id: '1233123123',
+      date: appointmentDate,
+    });
+
+    expect(
+      createAppointment.execute({
+        provider_id: '1233123123',
+        date: appointmentDate,
+      })
+    ).rejects.toBeInstanceOf(AppError);
+  });
 });
