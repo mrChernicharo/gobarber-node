@@ -5,15 +5,18 @@ import FakeHashProvider from '../providers/HashProvider/fakes/fakeHashProvider';
 
 import CreateUserService from './CreateUserService';
 
-describe('CreateUser', () => {
-  it('should be able to create a new User', async () => {
-    const fakeUsersRepository = new FakeUsersRepository();
-    const fakeHashProvider = new FakeHashProvider();
+let fakeUsersRepository: FakeUsersRepository;
+let fakeHashProvider: FakeHashProvider;
+let createUser: CreateUserService;
 
-    const createUser = new CreateUserService(
-      fakeUsersRepository,
-      fakeHashProvider
-    );
+describe('CreateUser', () => {
+  beforeEach(() => {
+    fakeUsersRepository = new FakeUsersRepository();
+    fakeHashProvider = new FakeHashProvider();
+    createUser = new CreateUserService(fakeUsersRepository, fakeHashProvider);
+  });
+
+  it('should be able to create a new User', async () => {
     const user = await createUser.execute({
       name: 'Zé das Couves',
       email: 'ze@couves.com',
@@ -24,21 +27,13 @@ describe('CreateUser', () => {
   });
 
   it('should not be able to create User with an already used email adress', async () => {
-    const fakeUsersRepository = new FakeUsersRepository();
-    const fakeHashProvider = new FakeHashProvider();
-
-    const createUser = new CreateUserService(
-      fakeUsersRepository,
-      fakeHashProvider
-    );
-
     await createUser.execute({
       name: 'Zé das Couves',
       email: 'ze@couves.com',
       password: '123123123',
     });
 
-    expect(
+    await expect(
       createUser.execute({
         name: 'Zé das Couves',
         email: 'ze@couves.com',
