@@ -1,5 +1,5 @@
 import { Router } from 'express';
-// import { sign } from 'jsonwebtoken';
+
 import ForgotPasswordController from '../controllers/ForgotPasswordController';
 import ResetPasswordController from '../controllers/ResetPasswordController';
 
