@@ -27,7 +27,7 @@ _____________________________________________________
 # Atualização do Perfil
 
 **RF**
-- O usuário deve poder alterar seu nome, email e senha (e avatar?)
+- O usuário deve poder alterar seu nome, email e senha
 
 **RFN**
 

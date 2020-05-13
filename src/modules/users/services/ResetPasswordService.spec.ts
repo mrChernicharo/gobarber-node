@@ -1,9 +1,9 @@
 import AppError from '@shared/errors/AppError';
 
-import FakeUsersRepository from '@modules/users/repositories/fakes/fakeUsersRepository';
+import FakeUsersRepository from '@modules/users/repositories/fakes/FakeUsersRepository';
 import FakeUserTokensRepository from '../repositories/fakes/FakeUserTokensRepository';
 import ResetPasswordService from './ResetPasswordService';
-import FakeHashProvider from '../providers/HashProvider/fakes/fakeHashProvider';
+import FakeHashProvider from '../providers/HashProvider/fakes/FakeHashProvider';
 // import UserToken from '../infra/typeorm/entities/UserToken';
 
 let fakeUsersRepository: FakeUsersRepository;
