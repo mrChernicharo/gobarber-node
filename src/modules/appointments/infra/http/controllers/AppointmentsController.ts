@@ -22,4 +22,8 @@ export default class AppointmentsController {
 
     return response.json(appointment);
   }
+
+  // public async index(request: Request, response: Response): Promise<Response> {
+  //   // TODO
+  // }
 }
