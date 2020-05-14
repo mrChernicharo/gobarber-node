@@ -1,4 +1,5 @@
-{
+[
+  {
   "type":"postgres",
   "host": "192.168.99.100",
   "port": "5432",
@@ -7,11 +8,24 @@
   "database": "gostack_gobarber",
   "entities": [
     "./src/modules/**/infra/typeorm/entities/*.ts"
-  ],
+    ],
   "migrations": [
     "./src/shared/infra/typeorm/migrations/*.ts"
-  ],
+    ],
   "cli": {
     "migrationsDir":"./src/shared/infra/typeorm/migrations"
-  }
-}
+    }
+  },
+
+  {
+    "name": "mongo",
+    "type":"mongodb",
+    "host": "192.168.99.100",
+    "port": "27017",
+    "useUnifiedTopology": true,
+    "database": "gobarber_mongo",
+    "entities": [
+      "./src/modules/**/infra/typeorm/schemas/*.ts"
+      ]
+    }
+]
