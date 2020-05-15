@@ -29,11 +29,10 @@ class UsersRepository implements IUsersRepository {
     except_user_id,
   }: IFindAllProvidersDTO): Promise<User[]> {
     let users = [];
-
     if (except_user_id) {
       users = await this.ormRepository.find({
         where: {
-          user_id: Not(except_user_id),
+          id: Not(except_user_id),
         },
       });
     } else {
