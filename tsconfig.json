@@ -1,4 +1,5 @@
 {
+  "exclude": ["node_modules", "coverage_reports","jest.config.js", "prettier.config.js"],
 
   "compilerOptions": {
     "target": "es5",
