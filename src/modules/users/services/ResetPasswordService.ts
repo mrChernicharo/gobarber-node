@@ -1,5 +1,5 @@
 import { injectable, inject } from 'tsyringe';
-import { isAfter, addHours } from 'date-fns';
+import { isBefore, addHours } from 'date-fns';
 
 import AppError from '@shared/errors/AppError';
 import IUsersRepository from '../repositories/IUsersRepository';
@@ -36,16 +36,14 @@ class ResetPasswordService {
     }
 
     const tokenCreatedAt = userToken.created_at;
-    const compareHours = addHours(tokenCreatedAt, 2);
+    const expiration = addHours(tokenCreatedAt, 2);
 
-    if (isAfter(Date.now(), compareHours)) {
+    // eslint-disable-next-line no-console
+    console.log(`criado às: ${tokenCreatedAt}, compare com: ${expiration}`);
+
+    if (!isBefore(tokenCreatedAt, expiration)) {
       throw new AppError('Token expired.');
     }
-
-    // console.log(user);
-    // console.log(userToken);
-    // console.log(tokenCreatedAt);
-    // console.log(compareHours);
 
     user.password = await this.hashProvider.generateHash(password);
 
