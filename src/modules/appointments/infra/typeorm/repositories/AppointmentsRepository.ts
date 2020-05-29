@@ -16,7 +16,12 @@ class AppointmentsRepository implements IAppointmentsRepository {
   }
 
   public async showAll(): Promise<Appointment[]> {
-    const appointments = await this.ormRepository.find();
+    const appointments = await this.ormRepository.find({
+      order: {
+        created_at: 'DESC',
+      },
+      relations: ['user'],
+    });
 
     return appointments;
   }

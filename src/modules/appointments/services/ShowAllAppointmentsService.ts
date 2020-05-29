@@ -4,6 +4,7 @@ import IAppointmentsRepository from '@modules/appointments/repositories/IAppoint
 import ICacheProvider from '@shared/container/providers/CachePrrovider/models/ICacheProvider';
 
 import Appointment from '@modules/appointments/infra/typeorm/entities/Appointment';
+import { classToClass } from 'class-transformer';
 
 @injectable()
 class ShowAllAppointmentsService {
@@ -18,7 +19,7 @@ class ShowAllAppointmentsService {
   public async execute(): Promise<Appointment[]> {
     const appointments = await this.appointmentsRepository.showAll();
 
-    return appointments;
+    return classToClass(appointments);
   }
 }
 export default ShowAllAppointmentsService;
