@@ -48,7 +48,7 @@ class ListProviderAppointmentsService {
       await this.cacheProvider.save(cachedKey, classToClass(appointments));
     }
 
-    console.log(appointments);
+    // console.log(appointments);
 
     return appointments;
   }

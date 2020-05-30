@@ -9,7 +9,7 @@ export default class ProviderAppointmentsController {
     const provider_id = request.user.id;
     const { day, month, year } = request.query;
 
-    console.log(provider_id);
+    // console.log(provider_id);
 
     const listProviderAppointments = container.resolve(
       ListProviderAppointmentsService
