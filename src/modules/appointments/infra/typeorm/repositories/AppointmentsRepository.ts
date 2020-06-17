@@ -18,7 +18,7 @@ class AppointmentsRepository implements IAppointmentsRepository {
   public async showAll(): Promise<Appointment[]> {
     const appointments = await this.ormRepository.find({
       order: {
-        created_at: 'DESC',
+        created_at: 'ASC',
       },
       relations: ['user'],
     });
@@ -52,6 +52,7 @@ class AppointmentsRepository implements IAppointmentsRepository {
             `to_char(${dateFilename}, 'MM-YYYY') = '${parsedMonth}-${year}'`
         ),
       },
+      order: { date: 'ASC' },
     });
     return appointments;
   }
@@ -73,6 +74,7 @@ class AppointmentsRepository implements IAppointmentsRepository {
             `to_char(${dateFilename}, 'DD-MM-YYYY') = '${parsedDay}-${parsedMonth}-${year}'`
         ),
       },
+      order: { date: 'ASC' },
       relations: ['user'],
     });
     return appointments;

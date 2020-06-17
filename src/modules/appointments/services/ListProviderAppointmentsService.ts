@@ -36,6 +36,8 @@ class ListProviderAppointmentsService {
       cachedKey
     );
 
+    // let appointments;
+
     if (!appointments) {
       appointments = await this.appointmentsRepository.findAllInDayFromProvider(
         {

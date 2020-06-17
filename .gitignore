@@ -1,8 +1,8 @@
+# .vscode/
 node_modules/
-.vscode/
-.gitignore/
-.env/
-ormconfig.json/
+.env
+.gitignore
+/ormconfig.json
 
 tmp/*
 !tmp/.gitkeep
